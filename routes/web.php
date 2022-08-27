@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Route::get('/', function () {
-    return 'Olá, mundo!';
-}); */
+Route::get('/teste', function () {
+    $siteContato = \App\SiteContato::all();
+    dd($siteContato);
+});
 
 /* Route::get('/sobre', function () {
     return 'Sobre nós';
