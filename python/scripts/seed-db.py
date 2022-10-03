@@ -16,7 +16,7 @@ fake = Faker(locale='pt-br')
 
 base_sql = "INSERT INTO fornecedores (nome, created_at, updated_at, uf, email, site) VALUES ('{}', '{}', '{}', 'SP', '{}', '{}')"
 
-# cria 100 registros fakes no banco de dados
+# cria n registros fakes no banco de dados
 for i in range(100):
     nome = fake.name()
     created_at = fake.date_time()
@@ -27,6 +27,7 @@ for i in range(100):
     cur.execute(sql)
 
 print('---------------------GRAVOU-----------------------')
+
 # Faz commit no banco e fecha a conexao
 con.commit()
 con.close()
