@@ -17,26 +17,12 @@ class AutenticacaoMiddleware
      */
     public function handle(Request $request, Closure $next, $metodo_autenticacao, $perfil, $param3, $param4)
     {
-        echo $metodo_autenticacao.' - '.$perfil.'<br>';
-
-        if ($metodo_autenticacao == 'padrao'){
-            echo 'Vericar a desgraça no BD'.$perfil.'<br>';
-        }
-
-        if ($perfil == 'ldpa') {
-            echo 'Verificar o candango no AD'.$perfil.'<br>';
-        }
-
-        if ($perfil == 'visitante') {
-            echo 'Exibir apenas algumas merdas <br>';
-        } else {
-            echo 'Sentou o perfil na vara <br>';
-        }
-
-        if (false) {
+        session_start();
+        if (isset($_SESSION['email']) && $_SESSION['email'] != '') {
             return $next($request);
         } else {
-            return Response('Acesso Cagado!');
+            return redirect()->route('site.login', ['erro' => 2]);
         }
+
     }
 }

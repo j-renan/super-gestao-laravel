@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ContatoController;
+use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\SobreNosController;
@@ -38,18 +41,22 @@ Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contat
 
 Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.contato');
 
-Route::get('/login', [LoginController::class, 'index'])->name('site.login');
+Route::get('/login/{erro?}', [LoginController::class, 'index'])->name('site.login');
 
 Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login');
 
 
 // Agrupamento de rotas
 Route::prefix('/app')->middleware('autenticacao:padrao,visitante,p3,p4')->group(function() {
-    Route::get('/clientes', function() {return 'Clientes';})->name('app.clientes');
+    Route::get('/home', [HomeController::class, 'index'])->name('app.home');
 
-    Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
+    Route::get('/sair', [LoginController::class, 'sair'])->name('app.login');
 
-    Route::get('/produtos', function() {return 'Produtos';})->name('app.produtos');
+    Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente');
+
+    Route::get('/fornecedor', [FornecedorController::class, 'index'])->name('app.fornecedor');
+
+    Route::get('/produto', [FornecedorController::class, 'index'])->name('app.produto');
 });
 
 //Redirecionamento de rotas
