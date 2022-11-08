@@ -205,3 +205,24 @@ span {
 .redes-sociais img {
     margin: 0px 15px 0px 15px;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.relative {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* .flex {
+    display: flex;
+    justify-content: space-evenly;
+} */
+
+.text-sm {
+    color: #000;
+}
