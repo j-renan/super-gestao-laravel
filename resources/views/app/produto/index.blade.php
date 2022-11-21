@@ -1,17 +1,17 @@
 @extends('app.layouts.basico')
 
-@section('titulo', 'Fornecedor')
+@section('titulo', 'Produto')
 
 @section('conteudo')
     <div class="conteudo-pagina">
         <div class="titulo-pagina-2">
-            <p>Fornecedor - Lista</p>
+            <p>Listagem de produtos</p>
         </div>
 
         <div class="menu">
             <ul>
-                <li><a href="{{ route('app.fornecedor.adicionar') }}">Novo</a></li>
-                <li><a href="{{ route('app.fornecedor') }}">Consulta</a></li>
+                <li><a href="{{ route('produto.create') }}">Novo</a></li>
+                <li><a href="">Consulta</a></li>
             </ul>
         </div>
 
@@ -21,22 +21,22 @@
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>Site</th>
-                            <th>UF</th>
-                            <th>E-mail</th>
+                            <th>Descrição</th>
+                            <th>Peso</th>
+                            <th>Unidade Id</th>
                             <th></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($fornecedores as $fornecedor)
+                        @foreach ($produtos as $produto)
                             <tr>
-                                <td>{{ $fornecedor->nome }}</td>
-                                <td>{{ $fornecedor->site }}</td>
-                                <td>{{ $fornecedor->uf }}</td>
-                                <td>{{ $fornecedor->email }}</td>
-                                <td><a href="{{ route('app.fornecedor.excluir', $fornecedor->id) }}">Excluir</a></td>
-                                <td><a href="{{ route('app.fornecedor.editar', $fornecedor->id) }}">Editar</a></td>
+                                <td>{{ $produto->nome }}</td>
+                                <td>{{ $produto->descricao }}</td>
+                                <td>{{ $produto->peso }}</td>
+                                <td>{{ $produto->unidade_id }}</td>
+                                <td><a href="">Excluir</a></td>
+                                <td><a href="">Editar</a></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="pagination">
-            {{ $fornecedores->appends($request)->links() }}
+            {{ $produtos->appends($request)->links() }}
             {{--<br>
             {{ $fornecedores->count() }}
             <br>
@@ -55,7 +55,7 @@
             {{ $fornecedores->lastItem() }}--}}
         </div>
         <br>
-        Exibindo {{ $fornecedores->count() }} fornecedores de {{ $fornecedores->total() }} (de {{ $fornecedores->firstItem() }} a {{ $fornecedores->lastItem() }})
+        Exibindo {{ $produtos->count() }} produtos de {{ $produtos->total() }} (de {{ $produtos->firstItem() }} a {{ $produtos->lastItem() }})
     </div>
 
 @endsection

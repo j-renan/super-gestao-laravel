@@ -65,11 +65,14 @@ Route::prefix('/app')->middleware('autenticacao:padrao,visitante,p3,p4')->group(
 
     Route::post('/fornecedor/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
 
-    Route::get('/produto', [FornecedorController::class, 'index'])->name('app.produto');
-
     Route::get('/fornecedor/editar/{id}/{msg?}', [FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
 
     Route::get('/fornecedor/excluir/{id}', [FornecedorController::class, 'excluir']) ->name('app.fornecedor.excluir');
+
+    Route::get('/produto', [FornecedorController::class, 'index'])->name('app.produto');
+
+    Route::resource('produto', 'ProdutoController');
+
 });
 
 //Redirecionamento de rotas
