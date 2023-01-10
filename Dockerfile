@@ -20,7 +20,13 @@ COPY ./composer.json ./
 
 COPY . ./
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+
+RUN php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+#RUN composer -V
+
+#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 #RUN composer update
 
